@@ -1,0 +1,77 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg-color: #F2F2F2;
+    --text-color-lt:#A4ACAD;
+    --orange-color: #F46D40;
+    --mobile-l: 425px;
+}
+
+body {
+    background-color: var(--bg-color);
+    height: 100vh;
+    width: 100%;
+}
+
+header, footer {
+    min-height: 62px;
+    background-color: white;
+    z-index: 9;
+}
+
+main {
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main .container {
+    flex: 1 1 100%;
+}
+
+header, footer, .container {
+    padding: 10px 15px;
+}
+
+.title {
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 30px;
+    color: black;
+}
+
+.button {
+    color: white;
+    background-color: var(--orange-color);
+    padding: 5px 10px;
+    width: 100%;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 30px;
+    border: none;
+    border-radius: 5px;
+    max-height: 40px;
+    max-width: 200px;
+    cursor: pointer;
+}
+
+.button:hover {
+    filter: grayscale(0.2);
+}
+
+a {
+    text-decoration: none;
+}
+
+
+@media (min-width: 1200px) {
+    main .container {
+        max-width: 1170px;
+        margin: 0 auto;
+    }
+}

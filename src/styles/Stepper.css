@@ -1,0 +1,292 @@
+.stepper {
+    max-width: 768px;
+    display: flex;
+    justify-content: center;
+}
+
+.stepper-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.stepper-navigation {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+
+.stepper-navigation-step--next {
+    color: gray;
+    pointer-events: none;
+}
+
+.stepper-content-item {
+    display: none;
+}
+
+.stepper-navigation-step--active, .stepper-content-item--active {
+    display: block;
+}
+
+.stepper-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.stepper-buttons div {
+    flex: 1;
+}
+
+.stepper-buttons button {
+    max-width: 100%;
+}
+
+
+/* MainStep */
+
+
+.stepper-main-step-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.stepper-main-step-form-elem {
+    display: flex;
+    flex-direction: column;
+}
+
+.stepper-main-step-form-elem label {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.stepper input {
+    min-height: 30px;
+    border-radius: 5px;
+    border: none;
+    border: 1px solid var(--orange-color);
+}
+
+/* MainStep */
+
+/* CardStep */
+
+
+
+
+.card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.card-container {
+    min-width: 320px;
+    position: relative;
+    z-index: 1;
+}
+
+
+.card {
+    margin: 0 auto;
+    min-width: 320px;
+    max-width: 320px;
+    min-height: 220px;
+    max-height: 220px;
+    transition: all 0.8s ease 0s;
+    transform-style: preserve-3d;
+    color: white;
+    position: relative;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    top:0;
+    left: 35%;
+    bottom: 0;
+    right: 0;
+    background: #051736;
+    clip-path: circle(100% at 30% 20%);
+    z-index: -2;
+}
+
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10px;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(#ff416c, #ff4b2b);
+    clip-path: circle(70% at 1% 30%);
+    z-index: -1;
+}
+
+.card-active {
+    transform: rotateY(-180deg);
+}
+
+.card-front,
+.card-back {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 25px 15px;
+    background: radial-gradient(140% 140% at 0% 0%, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 100%);
+    border-radius: 15px;
+    backdrop-filter: blur(30px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+    backface-visibility: hidden;
+}
+
+.card-front {
+    z-index: 2;
+    transform: rotateY(0deg);
+    backface-visibility: hidden;
+}
+
+.card-back {
+    transform: rotateY(-180deg);
+    justify-content: space-between;
+}
+
+.card-back-cvs {
+    flex: 1 1 100%;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
+}
+
+.card-back-cvs .cvs-text {
+
+}
+
+.card-back-cvs .cvs-field {
+    height: 30px;
+    width: 100%;
+    background-color: #ffffff;
+    border-radius: 5px;
+}
+
+.card-back-visa {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    width: 80px;
+}
+
+.card-back-black-line {
+    position: absolute;
+    height: 30px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    margin: 0px -15px;
+}
+
+.card-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-information {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-excise {
+    max-width: 60px;
+    max-height: 60px;
+}
+
+.card-bank {
+    max-width: 80px;
+    max-height: 80px;
+    align-self: center;
+}
+
+.card-holder-title, .expires-title {
+    margin: 0px 0px 5px 0px;
+    font-size: 12px;
+}
+
+.card-holder-fullname, .expires-date {
+    text-transform: uppercase;
+}
+
+.form-card {
+    /* position: absolute; */
+    top: 100px;
+    left: calc(50% - 250px);
+    border-radius: 10px;
+    z-index: -3;
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 30px 60px 0 rgb(90 116 148 / 40%);
+    width: 500px;
+    min-width: 300px;
+}
+
+.form-wrapper {
+    padding: 40px 30px 20px;
+}
+
+.form-main {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.form-row, .form-date {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
+
+
+.form-card .form-button {
+    margin: 10px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.form-card .form-button button {
+    width: 100%;
+    height: 30px;
+    border-radius: 5px;
+}
+
+.form-row input {
+    max-width: 150px;
+}
+
+/* CardStep */
+
+/* MapStep */
+.leaflet-container {
+    height: 400px;
+    width: 600px;
+    margin: 0 auto;
+  }
+/* MapStep */

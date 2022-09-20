@@ -1,0 +1,17 @@
+.cart-page {
+    max-width: 425px;
+    margin: 0 auto;
+}
+
+.cart-page .button {
+    margin: 20px 0px 0px 0px;
+    min-width: 100%;
+    min-height: 48px;
+}
+
+@media (min-width: 1200px) {
+    .cart-page {
+        min-width: 425px;
+    }
+    
+}
