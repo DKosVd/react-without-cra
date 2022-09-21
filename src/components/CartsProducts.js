@@ -3,11 +3,12 @@ import CartProduct from "./CartProduct";
 import '../styles/CartProducts.css';
 import Button from "./Button";
 import { useSelector } from "react-redux";
+import { totalElement, totalPrice } from "../features/cart/cart";
+import { Link } from "react-router-dom";
 
 const ResultCart = ({ count }) => {
 
-    const totalResult = useSelector(state => state.cart.total);
-
+    const totalResult = useSelector(totalPrice);
     return (
         <div className="cart-products-result">
             <div className="cart-products-result-text">Итого</div>
@@ -31,13 +32,19 @@ const Empty = () => {
 const CartProducts = () => {
 
     const products = useSelector( state => state.cart.products ); 
+    const count = useSelector(totalElement)
 
     return (
         <>
             <div className="cart-products">
-                {products.length ? products.map( (product, idx) => <CartProduct product={product} key={idx} />): <Empty/>}
+                {count ? Object.values(products).map( (product, idx) => <CartProduct product={product} key={idx} />): <Empty/>}
             </div>
-            {products.length ? <><ResultCart products={products} count={products.length} /><Button text={"Оформить заказ"}/></> : '' }
+            {count ? <>
+                        <ResultCart products={products} count={count} />
+                        <Link to={'/order'}>
+                            <Button text={"Оформить заказ"}/>
+                        </Link>
+                    </> : '' }
         </>
     )
 }

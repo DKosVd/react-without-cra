@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-   products: [],
+   products: {},
    total: 0
 };
 
@@ -10,28 +10,47 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addElementToCart:(state, action) => {
-            state.products.push(action.payload);
-            state.total += action.payload.price;
+            if(!state.products.hasOwnProperty(action.payload._id)) {
+                const prepareForMap = {...action.payload, count: 1};
+                state.products[`${action.payload._id}`] = prepareForMap;
+            } else {
+                state.products[`${action.payload._id}`].count+=1;
+            }
         },
         deleteElementFromCart: (state, action) => {
-            state.products = state.products.filter(id => id !== action.payload);
+            const id = action.payload;
+            if((state.products[id].count - 1) > 0) {
+                state.products[id].count -=1;
+            } else {
+                delete state.products[id];
+            }
         }
     }
 })
 
-// export const totalPrice = createSelector(
-//     (state) => state.cart.products,
-//     (state) => state.products.products,
-//     (items, products) => {
-//         let total = 0;
-//         for(let id in items) {
-//             const idCartProduct = items[id];
-//             const element = products.filter( ({_id}, idx) => _id === idCartProduct).pop();
-//             total += element.price;
-//         }
-//         return total.toFixed(2);
-//     }
-//     )
+export const totalPrice = createSelector(
+    (state) => state.cart.products,
+    (items, _) => {
+        let total = 0;
+        for(let id in items) {
+            const item = items[id];
+            total += item.price * item.count;
+        }
+        return total.toFixed(2);
+    }
+)
+
+export const totalElement = createSelector(
+    (state) => state.cart.products,
+    (items, _) => {
+        let total = 0;
+        for(let id in items) {
+            const item = items[id];
+            total += item.count;
+        }
+        return total;
+    }
+)
 
 export const { addElementToCart, deleteElementFromCart } = cartSlice.actions;
 

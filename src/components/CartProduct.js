@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { addElementToCart, deleteElementFromCart } from "../features/cart/cart";
 import { getProductById } from "../features/products/product";
 import '../styles/CartProduct.css';
 
-const Counter = () => {
+const Counter = ({count, id}) => {
 
-    const [count, setCount] = useState(0);
+    const dispatch = useDispatch();
 
     const minus = () => {
-        if(count === 0) return; 
-        setCount(count - 1);
+        dispatch(deleteElementFromCart(id))
     }
 
     const plus = () => {
-        setCount(count + 1);
+        dispatch(addElementToCart({_id: id}));
     }
 
     return (
@@ -27,7 +27,6 @@ const Counter = () => {
 
 
 const CartProduct = ({ product }) => {
-    console.log(product)
 
     return (
         <div className="cart-product">
@@ -37,8 +36,8 @@ const CartProduct = ({ product }) => {
             <div className="cart-product-info">
                 <div className="cart-product-info-title">{product?.name}</div>
                 <div className="cart-product-info-manipulate">
-                    <Counter/>
-                    <div className="cart-product-info-manipulate-price">{product?.price} Р</div>
+                    <Counter count={product?.count} id={product?._id}/>
+                    <div className="cart-product-info-manipulate-price">{product?.price * product?.count } Р</div>
                 </div>
             </div>
         </div>

@@ -8,7 +8,6 @@ const Product = ( {data} ) => {
 
     const dispatch = useDispatch();
     const {_id, price, picture, name, count} = data;
-
     const addToCart = (e) => {
         e.preventDefault();
         dispatch(addElementToCart({

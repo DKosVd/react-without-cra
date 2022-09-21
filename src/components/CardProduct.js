@@ -1,15 +1,23 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getProductById } from "../api/products";
+import { addElementToCart } from "../features/cart/cart";
+import { getProductById } from "../features/products/product";
 import '../styles/CardProduct.css'
 import Button from "./Button";
 
 const CardProduct = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState();
+    const product = useSelector(state => state.products.product);
+    const dispatch = useDispatch();
     useEffect(() => {
-        setProduct(getProductById(id));
+        dispatch(getProductById(id));
     }, [id]);
+
+
+    const handlerAddToCart = () => {
+        dispatch(addElementToCart(product))
+    }
 
     if(!product) {
         return (
@@ -30,7 +38,7 @@ const CardProduct = () => {
                     </div>
                     <div className="product-card-content-main">
                         <span className="product-card-content-main-price">{product?.price} Р</span>
-                        <Button/>
+                        <Button text={"Добавить"} onClick={handlerAddToCart}/>
                     </div>
                 </div>
             </div>

@@ -9,14 +9,6 @@ export default [
     },
     {
         filter: 'high',
-        name: 'Элементов больше'
+        name: 'Сначала дороже'
     },
-    {
-        filter: 'big',
-        name: 'Элементов меньше'
-    },
-    {
-        filter: 'ltl',
-        name: 'Элементов больше'
-    }
 ]

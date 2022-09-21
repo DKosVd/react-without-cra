@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import '../styles/Navigation.css'
 import navigationPanel from '../mock-data/NavigationPanel'
+import { totalElement } from "../features/cart/cart";
 
 const NavigationItem = ({data, count}) => {
     const {title, src, cart, img} = data;
@@ -20,10 +21,10 @@ const NavigationItem = ({data, count}) => {
 }
 
 const Navigation = () => {
-    const products = useSelector(state => state.cart.products);
+    const products = useSelector(totalElement);
     return (
     <nav className="navigation">
-        {navigationPanel.map( (product, idx) => <NavigationItem key={idx} data={product} count={products.length}/>)}
+        {navigationPanel.map( (product, idx) => <NavigationItem key={idx} data={product} count={products}/>)}
     </nav>
     )
 }
