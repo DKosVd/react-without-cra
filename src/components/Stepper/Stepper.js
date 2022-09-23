@@ -31,7 +31,7 @@ const Stepper = () => {
 
     const handlerSetActivePageByButton = (e) => {
         const info = e.target.getAttribute('data-attribute');
-        info === "next" ? dispatch(setActiveStep(currentStep + 1)) : dispatch(setActiveStep(currentStep - 1));
+        info === "next" ? dispatch(setActiveStep(currentStep + 1)) : dispatch(setCurrentStep(currentStep - 1));
     }
 
     const handleDoOrder = () => {
@@ -47,7 +47,7 @@ const Stepper = () => {
             <div className="stepper-wrapper">
                 <div className="stepper-navigation">
                     {stepData.map( ({title}, idx) => {
-                        return  <span data-step={idx} key={idx} onClick={handlerSetCurrentStep} className={`stepper-navigation-step ${idx === activeStep ? 'stepper-navigation-step--active': ''} ${activeStep >= idx  ? '': 'stepper-navigation-step--next'}`}>{title}</span>
+                        return  <span data-step={idx} key={idx} onClick={handlerSetCurrentStep} className={`stepper-navigation-step ${idx === currentStep ? 'stepper-navigation-step--active': ''} ${activeStep >= idx  ? '': 'stepper-navigation-step--next'}`}>{title}</span>
                     })}
                 </div>
                 <div className="stepper-content">
@@ -56,9 +56,9 @@ const Stepper = () => {
                     })}
                 </div>
                 <div className="stepper-buttons">
-                    <div className="stepper-button-prev">
+                    {currentStep === 0 ? null: <div className="stepper-button-prev">
                         <Button text={"Назад"} onClick={handlerSetActivePageByButton} dataInfo={'prev'} disabled={currentStep === 0}/>
-                    </div>
+                    </div>}
                     <div className="stepper-button-next ">
                         {isLastPage() ? 
                             <Button text={"Заказать"} onClick={handleDoOrder} dataInfo={'order'}/>:

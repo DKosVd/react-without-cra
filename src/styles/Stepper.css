@@ -14,8 +14,13 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    gap: 15px;
 }
 
+
+.stepper-navigation-step {
+    cursor: pointer;
+}
 
 .stepper-navigation-step--next {
     color: gray;
@@ -28,6 +33,10 @@
 
 .stepper-navigation-step--active, .stepper-content-item--active {
     display: block;
+}
+
+.stepper-navigation-step--active {
+    border-bottom: 3px solid var(--orange-color);
 }
 
 .stepper-buttons {
