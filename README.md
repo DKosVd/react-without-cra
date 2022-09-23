@@ -11,4 +11,6 @@ React 16+
 2) npm i
 3) npm run start
 
-Доступы(файл env.js)
+Пример(env.js)
+Доступы:
+https://developer.mapquest.com/
