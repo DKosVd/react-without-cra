@@ -12,9 +12,9 @@ export const cartSlice = createSlice({
         addElementToCart:(state, action) => {
             if(!state.products.hasOwnProperty(action.payload._id)) {
                 const prepareForMap = {...action.payload, count: 1};
-                state.products[`${action.payload._id}`] = prepareForMap;
+                state.products[action.payload._id] = prepareForMap;
             } else {
-                state.products[`${action.payload._id}`].count+=1;
+                state.products[action.payload._id].count+=1;
             }
         },
         deleteElementFromCart: (state, action) => {

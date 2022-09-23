@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import products from "../../mock-data/products";
+import { sortAlpha, sortNumber } from "../../utils/comparator";
 
 const initialState = {
     products: products,
@@ -17,10 +18,19 @@ export const productSlice = createSlice({
         },
         setProducts:(state, action) => {
 
-        }
+        },
+        sortElementByType:(state, action) => {
+            const copyProducts = [...state.products];
+            if(action.payload === "name") {
+                state.products = copyProducts.sort(sortAlpha)
+            } else {
+                state.products = copyProducts.sort(sortNumber(action.payload))
+            }
+            
+        }, 
     }
 })
 
-export const { getProducts, getProductById, setProducts } = productSlice.actions;
+export const { getProducts, getProductById, setProducts, sortElementByType } = productSlice.actions;
 
 export default productSlice.reducer;

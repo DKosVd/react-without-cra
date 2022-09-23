@@ -1,14 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Product from "./Product";
 import '../styles/Products.css'
-import { getProducts } from "../api/products";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Products = () => {
-    const [products, setProducts] = useState(null);
-    useEffect(() => {
-        setProducts(getProducts());
-    }, []);
+    const products = useSelector(state => state.products.products);
 
     return (
     <div className="products-elems">

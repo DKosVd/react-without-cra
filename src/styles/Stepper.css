@@ -158,6 +158,37 @@
     backface-visibility: hidden;
 }
 
+.card-number {
+    display: flex;
+}
+
+.card-number span {
+    position: relative;
+    flex: 0 1 5%;
+}
+
+.card-number span:nth-child(n + 5)::after {
+    content: "#";
+    position: absolute;
+    font-size: 16px;
+}
+
+.card-number span:nth-child(4n + 4) {
+    margin: 0px 10px 0px 0px;
+}
+
+.card-number span:nth-child(n + 5) {
+    font-size: 0px;
+}
+
+.card-number span:nth-child(n + 13)::after {
+    content: "";
+}
+
+.card-number span:nth-child(n + 13) {
+    font-size: inherit;
+}
+
 .card-back {
     transform: rotateY(-180deg);
     justify-content: space-between;
@@ -181,6 +212,10 @@
     width: 100%;
     background-color: #ffffff;
     border-radius: 5px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 .card-back-visa {
@@ -288,5 +323,21 @@
     height: 400px;
     width: 600px;
     margin: 0 auto;
-  }
+}
+
+.stepper-map-step {
+    position: relative;
+}
+
+.stepper-map-step-address {
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+    left: calc(50% - 100px);
+    font-size: 24px;
+}
+
+.leaflet-control-attribution.leaflet-control a svg {
+    display: none;
+}
 /* MapStep */
